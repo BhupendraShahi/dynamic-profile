@@ -1,28 +1,50 @@
 import bcrypt from "bcrypt";
 import User from "../models/User.js";
 import { createSecretToken } from "../util/secretToken.js";
+import { v2 as cloudinary } from "cloudinary";
 
 export const signup = async (req, res, next) => {
   try {
-    const { email, password, username, bio, experience, education, skills} = req.body;
+    const { email, password, username, bio, experience, education, skills, profileImage } = req.body;
+
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.json({ message: "User already exists" });
     }
-    const user = await User.create({ email, password, username, bio, experience, education, skills });
+
+    // Upload the profile image to Cloudinary
+    const imageResponse = await cloudinary.uploader.upload(profileImage, {
+      folder: "upload",
+    });
+    const imageUrl = imageResponse.secure_url;
+
+    // Create the user record
+    const user = await User.create({
+      email,
+      password,
+      username,
+      bio,
+      experience,
+      education,
+      skills,
+      profilePicture: imageUrl, 
+    });
+
+    // Generate and set token
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
       withCredentials: true,
       httpOnly: false,
     });
-    res
-      .status(201)
-      .json({ message: "User signed in successfully", success: true, user });
-    next();
+
+    res.status(201).json({ message: "User signed in successfully", success: true, user });
   } catch (error) {
     console.error(error);
+    return res.status(500).json({ message: "Error signing up", success: false });
   }
+  next();
 };
+
 
 export const login = async (req, res, next) => {
   try {

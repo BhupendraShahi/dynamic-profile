@@ -11,6 +11,7 @@ interface User {
   skills: string[];
   experience: string[];
   education: string[];
+  profilePicture: string;
 }
 
 interface AuthContextType {

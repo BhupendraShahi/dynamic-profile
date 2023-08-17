@@ -12,6 +12,7 @@ interface SignupFormData {
   experience: string[];
   education: string[];
   skills: string[];
+  profileImage: string;
 }
 
 const SignupPage: React.FC = () => {
@@ -26,6 +27,7 @@ const SignupPage: React.FC = () => {
     experience: [],
     education: [],
     skills: [],
+    profileImage: "",
   };
 
   const [formData, setFormData] = useState<SignupFormData>(initialFormData);
@@ -75,6 +77,7 @@ const SignupPage: React.FC = () => {
     });
   };
 
+
   const handleSignup = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
@@ -107,6 +110,8 @@ const SignupPage: React.FC = () => {
       <div className="w-1/3 bg-white p-8 rounded-lg shadow-lg">
         <h2 className="text-2xl mb-4 font-semibold">Sign Up</h2>
         {error && <p className="text-red-500 mb-4">{error}</p>}
+        
+
         <input
           type="email"
           placeholder="Email"

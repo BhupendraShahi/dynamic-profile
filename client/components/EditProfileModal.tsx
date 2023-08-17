@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Modal from "./Modal"; // Import your modal component or library here
 import axios from "axios";
 import { useAuth } from "@/contexts/authContext";
+import UploadImage from "./UploadImage";
 
 interface User {
   id: string;
@@ -11,6 +12,7 @@ interface User {
   skills: string[];
   experience: string[];
   education: string[];
+  profilePicture: string;
 }
 
 interface EditProfileModalProps {
@@ -103,6 +105,9 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className="p-4">
         <h2 className="text-2xl font-semibold mb-4">Edit Profile</h2>
+        <div className="mb-4">
+          <UploadImage />
+        </div>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="username" className="block font-medium mb-1">
