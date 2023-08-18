@@ -16,12 +16,8 @@ export const getProfile = async (req, res) => {
 };
 
 export const updateProfile = async (req, res) => {
-  const { username, bio, skills, experience, education, profilePicture, connections } = req.body.user;
-  console.log(req.body, "res");
+  const { username, bio, skills, experience, education, profilePicture, connections } = req.body;
   try {
-    console.log(profilePicture, "response");
-    console.log(username, "response");
-    console.log(req.userId, "userID");
     const user = await User.findByIdAndUpdate(
       req.userId,
       {
@@ -34,8 +30,7 @@ export const updateProfile = async (req, res) => {
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
-    console.log(user, "after update");
-
+    
     // Return the updated user profile
     return res.json({
       success: true,

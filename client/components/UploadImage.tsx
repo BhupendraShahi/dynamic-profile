@@ -33,12 +33,12 @@ const UploadImage: React.FC = () => {
       console.log(user);
       console.log(response);
       if (user) {
-        console.log(user)
+        console.log(user, "user");
         user.profilePicture = response.data.url;
         await axios.put(
           "http://localhost:8080/api/profile/update-profile",
           {
-            user,
+            ...user,
           },
           { withCredentials: true }
         );
