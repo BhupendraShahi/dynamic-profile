@@ -63,12 +63,15 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
       }));
     }
   };
-
+  
   const handleAddField = (fieldName: keyof User) => {
-    setEditedUser((prevUser) => ({
-      ...prevUser,
-      [fieldName]: [...prevUser[fieldName], ""],
-    }));
+    setEditedUser((prevUser) => {
+      const newArray = [...prevUser[fieldName], ""]; // Create a new array with the additional item
+      return {
+        ...prevUser,
+        [fieldName]: newArray, // Use the new array in the object
+      };
+    });
   };
 
   const handleRemoveField = (fieldName: keyof User, index: number) => {
