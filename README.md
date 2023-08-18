@@ -35,8 +35,8 @@ Dynamic Profile is a Full Stack CRUD application built using Next.js, Node.js, E
 ### Installation
 
 1. Clone the repository:
-   git clone https://github.com/your-username/dynamic-profile.git
-
+   git clone [https://github.com/your-username/dynamic-profile.git
+](https://github.com/BhupendraShahi/dynamic-profile.git)
 2. Navigate to the project directory:
    cd dynamic-profile
    cd server -> npm install -> cd .. -> cd client -> npm install
