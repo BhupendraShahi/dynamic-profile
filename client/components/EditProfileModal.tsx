@@ -27,7 +27,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
   user,
 }) => {
   const { updateUser } = useAuth();
-  console.log(user, "modal user");
+  
   const [editedUser, setEditedUser] = useState<User>({
     ...user,
     skills: user.skills.slice(),
@@ -84,7 +84,6 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      console.log(editedUser, "edited User");
       const response = await axios.put(
         "http://localhost:8080/api/profile/update-profile",
         editedUser,
@@ -92,8 +91,9 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
       );
 
       if (response.data.success) {
+        console.log(response.data)
         console.log("Profile updated successfully");
-        updateUser(editedUser);
+        updateUser(response.data.user);
         onClose();
       } else {
         console.error("Failed to update profile");

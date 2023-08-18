@@ -5,7 +5,7 @@ import { verifyToken } from '../middlewares/authMiddleware.js';
 const router = express.Router();
 
 router.post('/add-connection', verifyToken, addConnection);
-router.delete('/remove-connection', verifyToken, removeConnection);
+router.put('/remove-connection', verifyToken, removeConnection);
 router.get('/get-connections', verifyToken, getAllConnections);
 
 export default router;

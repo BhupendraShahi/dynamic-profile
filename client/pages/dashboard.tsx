@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import { useAuth } from '../contexts/authContext';
-import { useRouter } from 'next/router';
-import axios from 'axios';
-import Link from 'next/link';
+import { useRouter } from 'next/router';;
 import SideNavBar from '@/components/SideNavBar';
 import NavBar from '@/components/NavBar';
 import Profile from '@/components/Profile';
@@ -25,7 +22,7 @@ const DashboardPage: React.FC = () => {
       <SideNavBar setActiveComponent={setActiveComponent} />
       <div className="flex-grow">
         <NavBar />
-        <div className="p-4">{renderActiveComponent()}</div>
+        <div>{renderActiveComponent()}</div>
       </div>
     </div>
   );

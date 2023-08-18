@@ -17,6 +17,8 @@ export const getProfile = async (req, res) => {
 
 export const updateProfile = async (req, res) => {
   const { username, bio, skills, experience, education, profilePicture, connections } = req.body;
+  console.log(req.body, "req.body");
+  console.log(req.body.user, "req.body.user")
   try {
     const user = await User.findByIdAndUpdate(
       req.userId,
@@ -32,6 +34,7 @@ export const updateProfile = async (req, res) => {
     }
     
     // Return the updated user profile
+    console.log(user, "updated user");
     return res.json({
       success: true,
       user,

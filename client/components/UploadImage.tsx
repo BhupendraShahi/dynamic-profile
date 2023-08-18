@@ -3,7 +3,7 @@ import axios from "axios";
 import { useAuth } from "@/contexts/authContext";
 
 const UploadImage: React.FC = () => {
-  const { user } = useAuth();
+  const { user, updateUser } = useAuth();
   const [file, setFile] = useState<File | null>(null);
   const [filename, setFilename] = useState<string>("");
 
@@ -17,7 +17,7 @@ const UploadImage: React.FC = () => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(file);
+
     if (!file) {
       return;
     }
@@ -30,18 +30,17 @@ const UploadImage: React.FC = () => {
         "https://api.cloudinary.com/v1_1/bhupi/image/upload",
         formData
       );
-      console.log(user);
-      console.log(response);
+
       if (user) {
-        console.log(user, "user");
         user.profilePicture = response.data.url;
-        await axios.put(
+        const { data } = await axios.put(
           "http://localhost:8080/api/profile/update-profile",
           {
             ...user,
           },
           { withCredentials: true }
         );
+        user.profilePicture = data.user.profilePicture;
       }
     } catch (error) {
       console.error(error);
@@ -57,7 +56,7 @@ const UploadImage: React.FC = () => {
         <input type="file" accept="image/*" onChange={handleFileChange} />
         <label>{filename}</label>
       </div>
-      <button type="submit">Upload</button>
+      <button className="text-blue-500 px-4 py-1 mt-2 rounded-2xl bg-blue-100 hover:bg-blue-800 hover:text-white" type="submit">Upload</button>
     </form>
   );
 };

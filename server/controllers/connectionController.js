@@ -3,7 +3,7 @@ import User from "../models/User.js";
 export const addConnection = async (req, res) => {
   try {
     const { connectionId } = req.body;
-
+    
     // Find the user who wants to add a connection
     const user = await User.findById(req.userId);
     if (!user) {
@@ -28,7 +28,7 @@ export const addConnection = async (req, res) => {
     res.json({
       success: true,
       message: "Connection added successfully",
-      updatedConnections: user.connections
+      updatedConnections: user.connections,
     });
   } catch (error) {
     console.error(error);
@@ -55,7 +55,7 @@ export const removeConnection = async (req, res) => {
     if (connectionIndex === -1) {
       return res.status(404).json({
         success: false,
-        message: "Connection not found"
+        message: "Connection not found",
       });
     }
 
@@ -63,7 +63,11 @@ export const removeConnection = async (req, res) => {
     user.connections.splice(connectionIndex, 1);
     await user.save();
 
-    res.json({ success: true, message: "Connection removed successfully", updatedConnections: user.connections});
+    res.json({
+      success: true,
+      message: "Connection removed successfully",
+      updatedConnections: user.connections,
+    });
   } catch (error) {
     console.error(error);
     res
@@ -74,11 +78,13 @@ export const removeConnection = async (req, res) => {
 
 export const getAllConnections = async (req, res) => {
   try {
-    const userId  = req.userId;
+    const userId = req.userId;
     const user = await User.findById(userId);
 
     if (!user) {
-      return res.status(404).json({ success: false, message: 'User not found' });
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
     }
     const connections = user.connections || [];
 
@@ -86,19 +92,31 @@ export const getAllConnections = async (req, res) => {
       _id: { $ne: user._id, $nin: connections },
     });
 
-    const connectionData = connections.map(connection => ({
+    const connectedUsers = await User.find({ _id: { $in: connections } });
+
+    const connectionData = connectedUsers.map((connection) => ({
+      _id: connection._id,
       username: connection.username,
       bio: connection.bio,
+      profilePicture: connection.profilePicture,
     }));
 
-    const nonConnectionData = nonConnections.map(nonConnection => ({
+    const nonConnectionData = nonConnections.map((nonConnection) => ({
+      _id: nonConnection._id,
       username: nonConnection.username,
       bio: nonConnection.bio,
+      profilePicture: nonConnection.profilePicture,
     }));
 
-    res.json({ success: true, connections: connectionData, nonConnections: nonConnectionData });
+    console.log(connectionData, "connectionData");
+    console.log(nonConnectionData, "nonConnectionData");
+    res.json({
+      success: true,
+      connections: connectionData,
+      nonConnections: nonConnectionData,
+    });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ success: false, message: 'Internal server error' });
+    res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
