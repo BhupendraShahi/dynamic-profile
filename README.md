@@ -4,14 +4,28 @@ Dynamic Profile is a Full Stack CRUD application built using Next.js, Node.js, E
 
 ## Screen Shots
 
+# Dashboard and Profile page
 ![Screenshot 2023-08-19 012824](https://github.com/BhupendraShahi/dynamic-profile/assets/62903302/7b3a3f20-37f6-4d21-8ffc-f91eaaca0e96)
+
+# Connections page
 ![Screenshot 2023-08-19 012846](https://github.com/BhupendraShahi/dynamic-profile/assets/62903302/6128c3b3-9107-4d7f-a5f5-8ee7881bf0f0)
+
+# Toggle Functionality of Adding and Removing  Connection
 ![Screenshot 2023-08-19 012902](https://github.com/BhupendraShahi/dynamic-profile/assets/62903302/754c9e6a-a403-4f8f-bea1-7e74e181b001)
 
-
+# Edit Details Modal
 ![Screenshot 2023-08-19 012930](https://github.com/BhupendraShahi/dynamic-profile/assets/62903302/442f889b-54b9-4d62-9998-cac753fd292c)
+
+# Login Page
 ![Screenshot 2023-08-19 012434](https://github.com/BhupendraShahi/dynamic-profile/assets/62903302/db2f9048-cf3d-490b-baad-fb62c1b28853)
-![Screenshot 2023-08-19 012902](https://github.com/BhupendraShahi/dynamic-profile/assets/62903302/754c9e6a-a403-4f8f-bea1-7e74e181b001)
+
+# SignUp Page
+![Screenshot 2023-08-19 012453](https://github.com/BhupendraShahi/dynamic-profile/assets/62903302/9462397d-980b-4b57-a8d0-2b339d32eb54)
+
+
+
+
+
 ## Features
 
 
