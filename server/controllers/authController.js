@@ -11,13 +11,6 @@ export const signup = async (req, res, next) => {
       return res.json({ message: "User already exists" });
     }
 
-    // // Upload the profile image to Cloudinary
-    // const imageResponse = await cloudinary.uploader.upload(profileImage, {
-    //   folder: "upload",
-    // });
-    // const imageUrl = imageResponse.secure_url;
-
-    // Create the user record
     const user = await User.create({
       email,
       password,
@@ -28,6 +21,7 @@ export const signup = async (req, res, next) => {
       skills,
       profilePicture
     });
+    
     // Generate and set token
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
