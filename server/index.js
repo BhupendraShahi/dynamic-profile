@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 const corsOptions = {
-  origin: "https://dynamic-profile-21vpzr1wu-bhupendrashahi.vercel.app/",
+  origin: "https://dynamic-profile.vercel.app",
   credentials: true,
   optionSuccessStatus: 200,
 };
