@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../contexts/authContext";
 import axios from "axios";
+import Image from "next/image";
 
 interface Connection {
   _id: string;
@@ -107,7 +108,7 @@ const Connections: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center justify-center">
-                <img
+                <Image
                   src={connection.profilePicture}
                   alt="user image"
                   height={150}
@@ -150,7 +151,7 @@ const Connections: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center justify-center">
-                <img
+                <Image
                   src={nonConnection.profilePicture}
                   alt="user image"
                   height={150}
