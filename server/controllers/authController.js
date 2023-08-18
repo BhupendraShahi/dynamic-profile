@@ -1,22 +1,21 @@
 import bcrypt from "bcrypt";
 import User from "../models/User.js";
 import { createSecretToken } from "../util/secretToken.js";
-import { v2 as cloudinary } from "cloudinary";
 
 export const signup = async (req, res, next) => {
   try {
-    const { email, password, username, bio, experience, education, skills, profileImage } = req.body;
+    const { email, password, username, bio, experience, education, skills, profilePicture } = req.body;
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.json({ message: "User already exists" });
     }
 
-    // Upload the profile image to Cloudinary
-    const imageResponse = await cloudinary.uploader.upload(profileImage, {
-      folder: "upload",
-    });
-    const imageUrl = imageResponse.secure_url;
+    // // Upload the profile image to Cloudinary
+    // const imageResponse = await cloudinary.uploader.upload(profileImage, {
+    //   folder: "upload",
+    // });
+    // const imageUrl = imageResponse.secure_url;
 
     // Create the user record
     const user = await User.create({
@@ -27,9 +26,8 @@ export const signup = async (req, res, next) => {
       experience,
       education,
       skills,
-      profilePicture: imageUrl, 
+      profilePicture
     });
-
     // Generate and set token
     const token = createSecretToken(user._id);
     res.cookie("token", token, {

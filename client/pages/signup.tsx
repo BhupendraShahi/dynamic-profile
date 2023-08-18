@@ -12,7 +12,7 @@ interface SignupFormData {
   experience: string[];
   education: string[];
   skills: string[];
-  profileImage: string;
+  profilePicture: string;
 }
 
 const SignupPage: React.FC = () => {
@@ -27,7 +27,7 @@ const SignupPage: React.FC = () => {
     experience: [],
     education: [],
     skills: [],
-    profileImage: "",
+    profilePicture: "",
   };
 
   const [formData, setFormData] = useState<SignupFormData>(initialFormData);
