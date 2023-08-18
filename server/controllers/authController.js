@@ -35,7 +35,7 @@ export const signup = async (req, res, next) => {
       httpOnly: false,
     });
 
-    res.status(201).json({ message: "User signed in successfully", success: true, user });
+    res.status(201).json({ message: "User signed up successfully", success: true, user });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Error signing up", success: false });
