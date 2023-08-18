@@ -63,20 +63,22 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
       }));
     }
   };
-  
+
   const handleAddField = (fieldName: keyof User) => {
-  setEditedUser((prevUser) => {
-    const newArray = [...(prevUser[fieldName] as string[]), ""]; // Specify the type as string[]
-    return {
-      ...prevUser,
-      [fieldName]: newArray, // Use the new array in the object
-    };
-  });
-};
+    setEditedUser((prevUser) => {
+      const newArray = [...(prevUser[fieldName] as string[]), ""]; // Specify the type as string[]
+      return {
+        ...prevUser,
+        [fieldName]: newArray, // Use the new array in the object
+      };
+    });
+  };
 
   const handleRemoveField = (fieldName: keyof User, index: number) => {
     setEditedUser((prevUser) => {
-      const updatedArray = prevUser[fieldName].filter((_, i) => i !== index);
+      const updatedArray = (prevUser[fieldName] as string[]).filter(
+        (_, i) => i !== index
+      );
       return {
         ...prevUser,
         [fieldName]: updatedArray,
@@ -255,22 +257,22 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
                 </button>
               </div>
               <div>
-              <div className="flex justify-between">
-                <button
-                  type="button"
-                  onClick={onClose}
-                  className="text-black px-4 py-2 rounded-2xl bg-blue-300 hover:bg-blue-800 hover:text-white"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="text-black px-4 py-2 rounded-2xl bg-blue-300 hover:bg-blue-800 hover:text-white"
-                >
-                  Save Changes
-                </button>
+                <div className="flex justify-between">
+                  <button
+                    type="button"
+                    onClick={onClose}
+                    className="text-black px-4 py-2 rounded-2xl bg-blue-300 hover:bg-blue-800 hover:text-white"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="text-black px-4 py-2 rounded-2xl bg-blue-300 hover:bg-blue-800 hover:text-white"
+                  >
+                    Save Changes
+                  </button>
+                </div>
               </div>
-            </div>
             </div>
           </form>
         </div>
