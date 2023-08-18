@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "https://dynamic-profile-21vpzr1wu-bhupendrashahi.vercel.app/",
   credentials: true,
   optionSuccessStatus: 200,
 };

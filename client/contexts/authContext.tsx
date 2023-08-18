@@ -41,7 +41,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   
     try {
       const response = await axios.get(
-        "http://localhost:8080/api/auth/verify-cookie",
+        "https://dynamic-profile.onrender.com/api/auth/verify-cookie",
         { withCredentials: true }
       );
   
@@ -57,7 +57,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const login = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/auth/user", { withCredentials: true });
+      const response = await axios.get("https://dynamic-profile.onrender.com/api/auth/user", { withCredentials: true });
       if (response.data.user) {
         setUser(response.data.user);
       } else {
@@ -74,7 +74,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const logout = () => {
     const handleLogout = async () => {
-      await axios.post("http://localhost:8080/api/auth/logout");
+      await axios.post("https://dynamic-profile.onrender.com/api/auth/logout");
     }
     handleLogout();
     setUser(null);

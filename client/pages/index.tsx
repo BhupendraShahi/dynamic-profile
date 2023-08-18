@@ -31,7 +31,7 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:8080/api/auth/login",
+        "https://dynamic-profile.onrender.com/api/auth/login",
         {
           ...inputValue,
         },

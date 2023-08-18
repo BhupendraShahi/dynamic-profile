@@ -34,7 +34,7 @@ const UploadImage: React.FC = () => {
       if (user) {
         user.profilePicture = response.data.url;
         const { data } = await axios.put(
-          "http://localhost:8080/api/profile/update-profile",
+          "https://dynamic-profile.onrender.com/api/profile/update-profile",
           {
             ...user,
           },

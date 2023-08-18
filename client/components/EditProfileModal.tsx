@@ -90,7 +90,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
     e.preventDefault();
     try {
       const response = await axios.put(
-        "http://localhost:8080/api/profile/update-profile",
+        "https://dynamic-profile.onrender.com/api/profile/update-profile",
         editedUser,
         { withCredentials: true }
       );

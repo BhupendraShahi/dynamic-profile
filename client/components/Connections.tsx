@@ -24,7 +24,7 @@ const Connections: React.FC = () => {
   const getConnections = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/api/connection/get-connections",
+        "https://dynamic-profile.onrender.com/api/connection/get-connections",
         { withCredentials: true }
       );
       if (response.data.success) {
@@ -44,7 +44,7 @@ const Connections: React.FC = () => {
   const handleConnect = async (connectionId: string) => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/connection/add-connection",
+        "https://dynamic-profile.onrender.com/api/connection/add-connection",
         { connectionId },
         { withCredentials: true }
       );
@@ -61,7 +61,7 @@ const Connections: React.FC = () => {
     try {
       // console.log(connectionId, "value of connection id passed dis");
       const response = await axios.put(
-        "http://localhost:8080/api/connection/remove-connection",
+        "https://dynamic-profile.onrender.com/api/connection/remove-connection",
         { connectionId },
         { withCredentials: true }
       );

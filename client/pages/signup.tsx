@@ -81,7 +81,7 @@ const SignupPage: React.FC = () => {
     try {
       setLoading(true);
       const { data } = await axios.post(
-        "http://localhost:8080/api/auth/signup",
+        "https://dynamic-profile.onrender.com/api/auth/signup",
         formData,
         { withCredentials: true }
       );
