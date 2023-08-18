@@ -11,10 +11,8 @@ const Navbar: React.FC = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  console.log(user, "user");
-  {
-    console.log(user?.profilePicture, "DP");
-  }
+  // console.log(user, "user");
+  // console.log(user?.profilePicture, "DP");
   return (
     <nav className="bg-white p-4 border-b-2 my-2">
       <div className="container mx-auto flex justify-end items-center">

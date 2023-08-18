@@ -53,10 +53,20 @@ const UploadImage: React.FC = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <input type="file" accept="image/*" onChange={handleFileChange} />
+        <input
+          id="123wer4t56"
+          type="file"
+          accept="image/*"
+          onChange={handleFileChange}
+        />
         <label>{filename}</label>
       </div>
-      <button className="text-blue-500 px-4 py-1 mt-2 rounded-2xl bg-blue-100 hover:bg-blue-800 hover:text-white" type="submit">Upload</button>
+      <button
+        className="text-blue-500 px-4 py-1 mt-2 rounded-2xl bg-blue-100 hover:bg-blue-800 hover:text-white"
+        type="submit"
+      >
+        Upload
+      </button>
     </form>
   );
 };

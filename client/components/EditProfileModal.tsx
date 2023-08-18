@@ -27,7 +27,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
   user,
 }) => {
   const { updateUser } = useAuth();
-  
+
   const [editedUser, setEditedUser] = useState<User>({
     ...user,
     skills: user.skills.slice(),
@@ -91,7 +91,7 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
       );
 
       if (response.data.success) {
-        console.log(response.data)
+        console.log(response.data);
         console.log("Profile updated successfully");
         updateUser(response.data.user);
         onClose();
@@ -105,164 +105,172 @@ const EditProfileModal: React.FC<EditProfileModalProps> = ({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <div className="p-4">
+      <div className="className=p-4 w-[90%] max-w-[800px] mx-auto">
         <h2 className="text-2xl font-semibold mb-4">Edit Profile</h2>
         <div className="mb-4">
           <UploadImage />
         </div>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="username" className="block font-medium mb-1">
-              Username
-            </label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={editedUser.username}
-              onChange={(e) => handleInputChange(e, "username")}
-              className="w-full p-2 border rounded"
-            />
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="email" className="block font-medium mb-1">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={editedUser.email}
-              disabled
-              className="w-full p-2 border rounded opacity-75"
-            />
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="bio" className="block font-medium mb-1">
-              Bio
-            </label>
-            <textarea
-              id="bio"
-              name="bio"
-              value={editedUser.bio}
-              onChange={(e) => handleInputChange(e, "bio")}
-              className="w-full p-2 border rounded"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="skills" className="block font-medium mb-1">
-              Skills (separate with newlines)
-            </label>
-            {editedUser.skills.map((skill, index) => (
-              <div key={`skills-${index}`} className="flex mb-2">
-                <textarea
-                  id={`skills-${index}`}
-                  name={`skills-${index}`}
-                  value={skill}
-                  onChange={(e) => handleInputChange(e, "skills", index)}
-                  className="flex-1 p-2 border rounded"
-                  rows={2}
+        <div className="flex flex-col max-h-[80vh] w-full m-8 overflow-y-auto">
+          <form className="flex" onSubmit={handleSubmit}>
+            <div className="m-8 w-full">
+              <div className="mb-4">
+                <label htmlFor="username" className="block font-medium mb-1">
+                  Username
+                </label>
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  value={editedUser.username}
+                  onChange={(e) => handleInputChange(e, "username")}
+                  className="w-full p-2 border rounded"
                 />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="email" className="block font-medium mb-1">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={editedUser.email}
+                  disabled
+                  className="w-full p-2 border rounded opacity-75"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label htmlFor="bio" className="block font-medium mb-1">
+                  Bio
+                </label>
+                <textarea
+                  id="bio"
+                  name="bio"
+                  value={editedUser.bio}
+                  onChange={(e) => handleInputChange(e, "bio")}
+                  className="w-full p-2 border rounded"
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="skills" className="block font-medium mb-1">
+                  Skills (separate with newlines)
+                </label>
+                {editedUser.skills.map((skill, index) => (
+                  <div key={`skills-${index}`} className="flex mb-2">
+                    <textarea
+                      id={`skills-${index}`}
+                      name={`skills-${index}`}
+                      value={skill}
+                      onChange={(e) => handleInputChange(e, "skills", index)}
+                      className="flex-1 p-2 border rounded"
+                      rows={2}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveField("skills", index)}
+                      className="text-black px-4 py-2 rounded-2xl bg-blue-300 hover:bg-blue-800 hover:text-white"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
                 <button
                   type="button"
-                  onClick={() => handleRemoveField("skills", index)}
-                  className="ml-2 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
+                  onClick={() => handleAddField("skills")}
+                  className="text-black px-4 py-2 rounded-2xl bg-blue-300 hover:bg-blue-800 hover:text-white"
                 >
-                  Remove
+                  Add Skill
                 </button>
               </div>
-            ))}
-            <button
-              type="button"
-              onClick={() => handleAddField("skills")}
-              className="mt-2 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-            >
-              Add Skill
-            </button>
-          </div>
+            </div>
 
-          <div className="mb-4">
-            <label htmlFor="education" className="block font-medium mb-1">
-              Education (separate with newlines)
-            </label>
-            {editedUser.education.map((education, index) => (
-              <div key={`education-${index}`} className="flex mb-2">
-                <textarea
-                  id={`education-${index}`}
-                  name={`education-${index}`}
-                  value={education}
-                  onChange={(e) => handleInputChange(e, "education", index)}
-                  className="flex-1 p-2 border rounded"
-                  rows={2}
-                />
+            <div className="m-8 w-full flex flex-col justify-between">
+              <div className="mb-4">
+                <label htmlFor="education" className="block font-medium mb-1">
+                  Education (separate with newlines)
+                </label>
+                {editedUser.education.map((education, index) => (
+                  <div key={`education-${index}`} className="flex mb-2">
+                    <textarea
+                      id={`education-${index}`}
+                      name={`education-${index}`}
+                      value={education}
+                      onChange={(e) => handleInputChange(e, "education", index)}
+                      className="flex-1 p-2 border rounded"
+                      rows={2}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveField("education", index)}
+                      className="text-black px-4 py-2 rounded-2xl bg-blue-300 hover:bg-blue-800 hover:text-white"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
                 <button
                   type="button"
-                  onClick={() => handleRemoveField("education", index)}
-                  className="ml-2 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
+                  onClick={() => handleAddField("education")}
+                  className="text-black px-4 py-2 rounded-2xl bg-blue-300 hover:bg-blue-800 hover:text-white"
                 >
-                  Remove
+                  Add Education
                 </button>
               </div>
-            ))}
-            <button
-              type="button"
-              onClick={() => handleAddField("education")}
-              className="mt-2 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-            >
-              Add Education
-            </button>
-          </div>
 
-          <div className="mb-4">
-            <label htmlFor="experience" className="block font-medium mb-1">
-              Experience (separate with newlines)
-            </label>
-            {editedUser.experience.map((experience, index) => (
-              <div key={`experience-${index}`} className="flex mb-2">
-                <textarea
-                  id={`experience-${index}`}
-                  name={`experience-${index}`}
-                  value={experience}
-                  onChange={(e) => handleInputChange(e, "experience", index)}
-                  className="flex-1 p-2 border rounded"
-                  rows={2}
-                />
+              <div className="mb-4">
+                <label htmlFor="experience" className="block font-medium mb-1">
+                  Experience (separate with newlines)
+                </label>
+                {editedUser.experience.map((experience, index) => (
+                  <div key={`experience-${index}`} className="flex mb-2">
+                    <textarea
+                      id={`experience-${index}`}
+                      name={`experience-${index}`}
+                      value={experience}
+                      onChange={(e) =>
+                        handleInputChange(e, "experience", index)
+                      }
+                      className="flex-1 p-2 border rounded"
+                      rows={2}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveField("experience", index)}
+                      className="text-black px-4 py-2 rounded-2xl bg-blue-300 hover:bg-blue-800 hover:text-white"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
                 <button
                   type="button"
-                  onClick={() => handleRemoveField("experience", index)}
-                  className="ml-2 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
+                  onClick={() => handleAddField("experience")}
+                  className="text-black px-4 py-2 rounded-2xl bg-blue-300 hover:bg-blue-800 hover:text-white"
                 >
-                  Remove
+                  Add Experience
                 </button>
               </div>
-            ))}
-            <button
-              type="button"
-              onClick={() => handleAddField("experience")}
-              className="mt-2 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-            >
-              Add Experience
-            </button>
-          </div>
-
-          <div className="flex justify-between">
-            <button
-              type="button"
-              onClick={onClose}
-              className="bg-gray-300 text-gray-800 py-2 px-4 rounded hover:bg-gray-400"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-            >
-              Save Changes
-            </button>
-          </div>
-        </form>
+              <div>
+              <div className="flex justify-between">
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="text-black px-4 py-2 rounded-2xl bg-blue-300 hover:bg-blue-800 hover:text-white"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="text-black px-4 py-2 rounded-2xl bg-blue-300 hover:bg-blue-800 hover:text-white"
+                >
+                  Save Changes
+                </button>
+              </div>
+            </div>
+            </div>
+          </form>
+        </div>
       </div>
     </Modal>
   );

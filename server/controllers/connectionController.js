@@ -17,7 +17,6 @@ export const addConnection = async (req, res) => {
       return res.status(400).json({
         success: false,
         message: "Connection already exists",
-        updatedConnections: user.connections,
       });
     }
 
@@ -28,7 +27,6 @@ export const addConnection = async (req, res) => {
     res.json({
       success: true,
       message: "Connection added successfully",
-      updatedConnections: user.connections,
     });
   } catch (error) {
     console.error(error);
@@ -65,8 +63,7 @@ export const removeConnection = async (req, res) => {
 
     res.json({
       success: true,
-      message: "Connection removed successfully",
-      updatedConnections: user.connections,
+      message: "Connection removed successfully"
     });
   } catch (error) {
     console.error(error);
@@ -108,8 +105,8 @@ export const getAllConnections = async (req, res) => {
       profilePicture: nonConnection.profilePicture,
     }));
 
-    console.log(connectionData, "connectionData");
-    console.log(nonConnectionData, "nonConnectionData");
+    // console.log(connectionData, "connectionData");
+    // console.log(nonConnectionData, "nonConnectionData");
     res.json({
       success: true,
       connections: connectionData,

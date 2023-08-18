@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
   },
   profilePicture: {
     type: String,
-    default:"https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"
+    default:"https://res.cloudinary.com/bhupi/image/upload/v1692359585/default-user-profile-picture_avuayp.webp"
   },
   bio: {
     type: String,

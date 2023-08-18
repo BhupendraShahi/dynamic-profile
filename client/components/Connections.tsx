@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../contexts/authContext";
 import axios from "axios";
-import Image from "next/image";
 
 interface Connection {
   _id: string;
@@ -16,27 +15,30 @@ const Connections: React.FC = () => {
   const [nonConnections, setNonConnections] = useState<Connection[]>([]);
 
   useEffect(() => {
-    const getConnections = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:8080/api/connection/get-connections",
-          { withCredentials: true }
-        );
-        if (response.data.success) {
-          setConnections(response.data.connections);
-          setNonConnections(response.data.nonConnections);
-        } else {
-          console.log("Failed to fetch connections");
-        }
-      } catch (error) {
-        console.error("Error fetching connections:", error);
-      }
-    };
-
     if (user) {
       getConnections();
     }
   }, [user]);
+
+  const getConnections = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8080/api/connection/get-connections",
+        { withCredentials: true }
+      );
+      if (response.data.success) {
+        
+        setConnections(response.data.connections);
+        setNonConnections(response.data.nonConnections);
+        // bool = !bool;
+      } else {
+        console.log("Failed to fetch connections");
+      }
+    } catch (error) {
+      console.error("Error fetching connections:", error);
+    }
+  };
+  
 
   const handleConnect = async (connectionId: string) => {
     try {
@@ -46,41 +48,33 @@ const Connections: React.FC = () => {
         { withCredentials: true }
       );
       if (response.data.success) {
-        setConnections([response.data.updatedConnections]);
-        setNonConnections(nonConnections.filter((c) => c._id !== connectionId));
-        console.log(connections, "connections con");
-        console.log(nonConnections, "nonConnections con");
+        getConnections();
       }
     } catch (error) {
       console.error("Error connecting:", error);
     }
   };
 
-  useEffect(() => {
-    
-  }, [connections, nonConnections]);
-  
   
   const handleDisconnect = async (connectionId: string) => {
     try {
-      console.log(connectionId, "value of connection id passed dis");
+      // console.log(connectionId, "value of connection id passed dis");
       const response = await axios.put(
         "http://localhost:8080/api/connection/remove-connection",
         { connectionId },
         { withCredentials: true }
       );
       if (response.data.success) {
-        setConnections(connections.filter((c) => c._id !== connectionId));
-        setNonConnections([response.data.updatedConnections]);
-        console.log(connections, "connections dis");
-        console.log(nonConnections, "nonConnections dis");
+        getConnections();
       }
     } catch (error) {
       console.error("Error disconnecting:", error);
     }
   };
 
-
+  if(!user) return (
+    <div>loading profile...</div>
+  )
 
   return (
     <div className="p-4 bg-blue-100">
@@ -118,6 +112,7 @@ const Connections: React.FC = () => {
                   alt="user image"
                   height={150}
                   width={150}
+                  className="rounded-full"
                 />
               </div>
             </li>
@@ -160,6 +155,7 @@ const Connections: React.FC = () => {
                   alt="user image"
                   height={150}
                   width={150}
+                  className="rounded-full"
                 />
               </div>
             </li>
