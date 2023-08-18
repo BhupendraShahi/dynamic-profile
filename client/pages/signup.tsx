@@ -51,7 +51,7 @@ const SignupPage: React.FC = () => {
 
   const handleRemoveItem = (field: keyof SignupFormData, index: number) => {
     setFormData((prevFormData) => {
-      const updatedField = prevFormData[field].filter((_, i) => i !== index);
+      const updatedField = (prevFormData[field] as string[]).filter((_, i) => i !== index);
       return {
         ...prevFormData,
         [field]: updatedField,
