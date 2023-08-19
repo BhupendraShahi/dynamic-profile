@@ -48,7 +48,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
 
     try {
       const response = await axios.get(
-        "http://localhost:8080/api/auth/verify-cookie",
+        "https://dynamic-profile.onrender.com/api/auth/verify-cookie",
         { withCredentials: true }
       );
 
@@ -71,7 +71,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   const login = async () => {
     try {
       // console.log(cookies);
-      const response = await axios.get("http://localhost:8080/api/profile/get-profile", {
+      const response = await axios.get("https://dynamic-profile.onrender.com/api/profile/get-profile", {
         withCredentials: true,
       });
       // console.log(cookies, "After getUser request inside auth context");
