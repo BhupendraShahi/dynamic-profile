@@ -28,7 +28,7 @@ const UploadImage: React.FC = () => {
     try {
       const response = await axios.post(
         "https://api.cloudinary.com/v1_1/bhupi/image/upload",
-        formData, { withCredentials: true }
+        formData
       );
 
       if (user) {
