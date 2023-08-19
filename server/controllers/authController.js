@@ -27,7 +27,8 @@ export const signup = async (req, res, next) => {
     res.cookie("token", token, {
       withCredentials: true,
       httpOnly: false,
-      sameSite: 'None'
+      sameSite: 'None',
+      secure: true,
     });
 
     res.status(201).json({ message: "User signed up successfully", success: true, user });
@@ -58,7 +59,8 @@ export const login = async (req, res, next) => {
     res.cookie("token", token, {
       withCredentials: true,
       httpOnly: false,
-      sameSite: 'None'
+      sameSite: 'None',
+      secure: true,
     });
     res
       .status(200)
