@@ -6,29 +6,30 @@ Live: https://dynamic-profile.vercel.app
 ## Screen Shots
 
 # Dashboard and Profile page
-![Screenshot 2023-08-19 012824](https://github.com/BhupendraShahi/dynamic-profile/assets/62903302/7b3a3f20-37f6-4d21-8ffc-f91eaaca0e96)
+![Screenshot 2023-08-19 012824](https://github.com/BhupendraShahi/dynamic-profile/assets/62903302/a32085a8-62e5-4d2c-bd19-299d580a431e)
+
 
 # Connections page
-![Screenshot 2023-08-19 012846](https://github.com/BhupendraShahi/dynamic-profile/assets/62903302/6128c3b3-9107-4d7f-a5f5-8ee7881bf0f0)
+![Screenshot 2023-08-19 012846](https://github.com/BhupendraShahi/dynamic-profile/assets/62903302/a398e50d-526e-40ec-be20-10551c44e82b)
+
 
 # Toggle Functionality of Adding and Removing  Connection
-![Screenshot 2023-08-19 012902](https://github.com/BhupendraShahi/dynamic-profile/assets/62903302/754c9e6a-a403-4f8f-bea1-7e74e181b001)
+![Screenshot 2023-08-19 012902](https://github.com/BhupendraShahi/dynamic-profile/assets/62903302/c482136f-bf18-4fcc-a8bb-49ba03c85971)
 
 # Edit Details Modal
-![Screenshot 2023-08-19 012930](https://github.com/BhupendraShahi/dynamic-profile/assets/62903302/442f889b-54b9-4d62-9998-cac753fd292c)
+![Screenshot 2023-08-19 012930](https://github.com/BhupendraShahi/dynamic-profile/assets/62903302/97357379-a56c-45fe-8200-7fe4297534ea)
 
 # Login Page
-![Screenshot 2023-08-19 012434](https://github.com/BhupendraShahi/dynamic-profile/assets/62903302/db2f9048-cf3d-490b-baad-fb62c1b28853)
+![Screenshot 2023-08-19 012434](https://github.com/BhupendraShahi/dynamic-profile/assets/62903302/8731bc09-42b4-4eae-9383-4ea23af2b140)
 
 # SignUp Page
-![Screenshot 2023-08-19 012453](https://github.com/BhupendraShahi/dynamic-profile/assets/62903302/9462397d-980b-4b57-a8d0-2b339d32eb54)
+![Screenshot 2023-08-19 012453](https://github.com/BhupendraShahi/dynamic-profile/assets/62903302/3b1ebaaf-f2ef-445c-bd8d-b8bf2d061d48)
 
 
 
 
 
 ## Features
-
 
 - **Authentication:** Secure login and sign-up functionality using JWT.
 - **Dynamic Profile and Connection Pages:** View and manage user profiles and connections.
