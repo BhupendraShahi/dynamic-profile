@@ -1,7 +1,13 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { useCookies } from 'react-cookie';
-import axios from 'axios';
-import { useRouter } from 'next/router';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
+import { useCookies } from "react-cookie";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 interface User {
   id: string;
@@ -23,9 +29,11 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const AuthProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   const [user, setUser] = useState<User | null>(null);
-  const [cookies, setCookie, removeCookie] = useCookies(['token']);
+  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   const router = useRouter();
 
   const updateUser = (updatedUser: User) => {
@@ -36,28 +44,37 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     if (!cookies.token) {
       console.log("No token found, redirecting to login");
       router.push("/");
-      return;
     }
-  
+
     try {
       const response = await axios.get(
-        "https://dynamic-profile.onrender.com/api/auth/verify-cookie",
+        "http://localhost:8080/api/auth/verify-cookie",
         { withCredentials: true }
       );
-  
+
       if (response.data.status) {
+        // console.log(cookies, "cookies");
         login();
       } else {
         console.log("Token verification failed, redirecting to login");
+        router.push("/");
       }
     } catch (error) {
       console.error("Error verifying token:", error);
     }
   };
 
+  useEffect(() => {
+    verifyCookie();
+  }, [cookies]);
+
   const login = async () => {
     try {
-      const response = await axios.get("https://dynamic-profile.onrender.com/api/auth/user", { withCredentials: true });
+      // console.log(cookies);
+      const response = await axios.get("http://localhost:8080/api/profile/get-profile", {
+        withCredentials: true,
+      });
+      // console.log(cookies, "After getUser request inside auth context");
       if (response.data.user) {
         setUser(response.data.user);
       } else {
@@ -67,10 +84,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       console.error("Error logging in:", error);
     }
   };
-
-  useEffect(() => {
-    verifyCookie();
-  }, [cookies]);
 
   const logout = () => {
     const handleLogout = async () => {
@@ -92,8 +105,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 };
-

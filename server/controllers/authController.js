@@ -27,6 +27,7 @@ export const signup = async (req, res, next) => {
     res.cookie("token", token, {
       withCredentials: true,
       httpOnly: false,
+      sameSite: 'None'
     });
 
     res.status(201).json({ message: "User signed up successfully", success: true, user });
@@ -53,16 +54,18 @@ export const login = async (req, res, next) => {
       return res.json({ message: "Incorrect password or email" });
     }
     const token = createSecretToken(user._id);
+    // console.log(token, "cookie in login");
     res.cookie("token", token, {
       withCredentials: true,
       httpOnly: false,
+      sameSite: 'None'
     });
     res
       .status(200)
       .json({ message: "User logged in successfully", success: true });
     next();
   } catch (error) {
-    res.status(500).json({ message: "Internal Server Error" });
+    res.status(500).json({ message: "Internal Server Error inside login" });
   }
 };
 
@@ -86,6 +89,6 @@ export const getUser = async (req, res, next) => {
     
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error inside getUser' });
   }
 };

@@ -1,4 +1,3 @@
-import { response } from "express";
 import User from "../models/User.js";
 
 export const getProfile = async (req, res) => {
@@ -14,6 +13,20 @@ export const getProfile = async (req, res) => {
     return res.status(500).json({ error: "Internal server error" });
   }
 };
+
+// export const getUser = async (req, res, next) => {
+//   try {
+//     const user = await User.findById(req.userId).select('-password');
+//     if (!user) {
+//       return res.status(404).json({ error: 'User not found' });
+//     }
+//     return res.json({ user });
+    
+//   } catch (error) {
+//     console.error(error);
+//     return res.status(500).json({ error: 'Internal server error inside getUser' });
+//   }
+// };
 
 export const updateProfile = async (req, res) => {
   const { username, bio, skills, experience, education, profilePicture, connections } = req.body;
