@@ -1,6 +1,7 @@
 # Dynamic Profile - Full Stack CRUD Application
 
 Dynamic Profile is a Full Stack CRUD application built using Next.js, Node.js, Express.js, and MongoDB. It allows users to create, edit, and manage their profiles and connections.
+Live: https://dynamic-profile.vercel.app
 
 ## Screen Shots
 
